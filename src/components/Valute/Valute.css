@@ -1,0 +1,50 @@
+.valute {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
+    width: 100%;
+    border-bottom: 2px solid  #d9d8d8;
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.vtitle {
+    color: #3f3f3f;
+    font-size: 16px;
+    font-weight: normal;
+    width: 100px;
+}
+
+.nomianal {
+    font-size: 14px;
+    font-weight: normal;
+    width: 100px;
+
+}
+
+.value {
+    font-size: 14px;
+    font-weight: normal;
+    width: 100px;
+
+
+}
+.button {
+    font-size: 14px;
+    font-weight: normal;
+    width: 100px;
+    border: none;
+    background: #fff;
+}
+.previous {
+    font-size: 14px;
+    font-weight: normal;
+    width: 100px;
+
+
+}
