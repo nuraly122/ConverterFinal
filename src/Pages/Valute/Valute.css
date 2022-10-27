@@ -1,14 +1,21 @@
+.vbox{
+    display:flex;
+    flex-direction:column;
+    row-gap: 30px;
+    margin: 30px auto 0px;
+}
+
 .valute {
     display: flex;
     flex-direction: column;
-    padding: 5px 10px;
+    padding: 10px 10px;
     width: 100%;
-    border-bottom: 2px solid  #d9d8d8;
+    row-gap: 30px;
 }
 
-.card {
+.vcard {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -17,34 +24,31 @@
     color: #3f3f3f;
     font-size: 16px;
     font-weight: normal;
-    width: 100px;
+    width: 100%;
 }
 
-.nomianal {
+.nominal {
     font-size: 14px;
     font-weight: normal;
-    width: 100px;
-
+    width: 70px;
 }
 
 .value {
     font-size: 14px;
     font-weight: normal;
-    width: 100px;
-
-
+    width: 150px;
 }
+
 .button {
     font-size: 14px;
     font-weight: normal;
-    width: 100px;
     border: none;
     background: #fff;
+    width: 150px;
 }
+
 .previous {
     font-size: 14px;
     font-weight: normal;
-    width: 100px;
-
-
+    width: 150px;
 }

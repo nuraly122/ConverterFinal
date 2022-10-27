@@ -1,14 +1,15 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import './Navbar.css'
+import {Box, Typography} from "@mui/material";
 
 const Navbar = () => {
     return (
-        <div className='header'>
-           <h3 className='title'> Конвертер Валют</h3>
+        <Box className='header'>
+            <Typography variant={"h6s"} className='title'> Конвертер Валют</Typography>
             <Link className='text' to='/valute'>Валюты</Link>
             <Link className='text' to='/converter'>Конвертер</Link>
-        </div>
+        </Box>
     );
 };
 
