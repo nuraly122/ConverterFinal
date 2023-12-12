@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import './Converter.css'
+import { useEffect, useState } from 'react';
+import './Converter.css';
 import {
     Box,
     Card,
@@ -8,57 +8,56 @@ import {
     MenuItem,
     Select,
     Typography,
-} from '@mui/material'
-import {Button} from '@mui/material'
-import {TextField} from '@mui/material'
-import FlipCameraAndroidIcon from '@mui/icons-material/FlipCameraAndroid'
-import {observer} from "mobx-react";
-import store from "../../Store/store";
+} from '@mui/material';
+import { Button } from '@mui/material';
+import { TextField } from '@mui/material';
+import FlipCameraAndroidIcon from '@mui/icons-material/FlipCameraAndroid';
+import { observer } from 'mobx-react';
+import store from '../../Store/store';
 
 const Converter = () => {
-    const [result, setResult] = useState('choose from and to')
+    const [result, setResult] = useState('choose from and to');
     const [convertData, setConvertData] = useState({
         from: '',
         to: '',
         amount: 1,
-    })
-
+    });
 
     const convert = () => {
-        if (store.valute.length === 0) return
-        const fromValute = store.valute.find((item) => item.CharCode === convertData.from)
-        const toValute = store.valute.find((item) => item.CharCode === convertData.to)
+        if (store.valute.length === 0) return;
+        const fromValute = store.valute.find((item) => item.CharCode === convertData.from);
+        const toValute = store.valute.find((item) => item.CharCode === convertData.to);
         if (fromValute && toValute) {
             setResult(
                 (fromValute?.Value /
                     fromValute?.Nominal /
                     (toValute?.Value / toValute?.Nominal)) *
-                convertData.amount
-            )
+                    convertData.amount
+            );
         }
-    }
+    };
 
     const changeConvertDataHandle = (e) => {
-        const name = e.target.name
-        const value = e.target.value
-        setConvertData((prev) => ({...prev, [name]: value}))
-    }
+        const name = e.target.name;
+        const value = e.target.value;
+        setConvertData((prev) => ({ ...prev, [name]: value }));
+    };
 
     const swapValuteCode = () => {
         setConvertData((prev) => ({
             ...prev,
             to: convertData.from,
             from: convertData.to,
-        }))
-    }
+        }));
+    };
 
     useEffect(() => {
-        convert()
-    }, [JSON.stringify(convertData)])
+        convert();
+    }, [convertData, result]);
 
     useEffect(() => {
-        store.getRates()
-    }, [])
+        store.getRates();
+    }, []);
 
     function format(number) {
         const parsedNumber = parseFloat(number);
@@ -66,24 +65,23 @@ const Converter = () => {
         if (!isNaN(parsedNumber)) {
             return parsedNumber.toFixed(2);
         } else {
-            console.error("Invalid number:", number);
-            return "NaN";
+            console.error('Invalid number:', number);
+            return 'NaN';
         }
     }
 
-
     return (
         <Box className='converter'>
-            <Typography sx={{mb: 1}} variant={'h5'}>
+            <Typography sx={{ mb: 1 }} variant={'h5'}>
                 Конвертер{' '}
             </Typography>
             <Card className='card'>
                 <div>
-                    <FormControl sx={{mb: 2, minWidth: 100}}>
-                        <InputLabel id='demo-simple-select-label'>From</InputLabel>
+                    <FormControl sx={{ mb: 2, minWidth: 100 }}>
+                        <InputLabel id='from-label'>From</InputLabel>
                         <Select
-                            labelId='demo-simple-select-label'
-                            id='demo-simple-select'
+                            labelId='from-label'
+                            id='from-select'
                             value={convertData.from}
                             name='from'
                             label='From'
@@ -102,7 +100,7 @@ const Converter = () => {
                         InputLabelProps={{
                             shrink: true,
                         }}
-                        sx = {{ width: 200}}
+                        sx={{ width: 200 }}
                         name='amount'
                         value={convertData.amount}
                         onChange={changeConvertDataHandle}
@@ -110,11 +108,11 @@ const Converter = () => {
                 </div>
 
                 <div>
-                    <FormControl sx={{mb: 2, minWidth: 100}}>
-                        <InputLabel id='demo-simple-select-label'>To</InputLabel>
+                    <FormControl sx={{ mb: 2, minWidth: 100 }}>
+                        <InputLabel id='to-label'>To</InputLabel>
                         <Select
-                            labelId='demo-simple-select-label'
-                            id='demo-simple-select'
+                            labelId='to-label'
+                            id='to-select'
                             value={convertData.to}
                             label='To'
                             name='to'
@@ -133,7 +131,7 @@ const Converter = () => {
                         InputLabelProps={{
                             shrink: true,
                         }}
-                        sx = {{ width: 200}}
+                        sx={{ width: 200 }}
                         className='disabled'
                         name='amount'
                         value={format(result)}
@@ -142,15 +140,14 @@ const Converter = () => {
                     />
                 </div>
 
-                <Box sx={{m: '0 auto'}}>
-                    <Button sx={{height: 40, width: 80}} variant='contained' onClick={swapValuteCode}>
-                        <FlipCameraAndroidIcon/>
+                <Box sx={{ m: '0 auto' }}>
+                    <Button sx={{ height: 40, width: 80 }} variant='contained' onClick={swapValuteCode}>
+                        <FlipCameraAndroidIcon />
                     </Button>
                 </Box>
-
             </Card>
         </Box>
-    )
-}
+    );
+};
 
-export default observer(Converter)
+export default observer(Converter);

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Card, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { observer } from "mobx-react";
 import './ConverterAdditional.css';
 
 const ConverterAdditional = () => {
     const [convertProduct, setConvertProduct] = useState({
-        from: 'shawerma',
+        from: 'shawerma', 
         to: 'som',
         amount: 1,
     });
@@ -14,7 +14,7 @@ const ConverterAdditional = () => {
 
     const productPrices = {
         nan: 20,
-        sawerma: 220,
+        shawerma: 220, 
         shoro: 80,
         qorot: 30,
     };
@@ -23,7 +23,10 @@ const ConverterAdditional = () => {
 
     useEffect(() => {
         if (convertProduct.to === 'usd') {
-            setResult((productPrices[convertProduct.from] * convertProduct.amount) / usdToSomRate);
+            const productPrice = productPrices[convertProduct.from];
+            if (!isNaN(productPrice) && !isNaN(convertProduct.amount)) {
+                setResult((productPrice * convertProduct.amount) / usdToSomRate);
+            }
         } else {
             setResult(productPrices[convertProduct.from] * convertProduct.amount);
         }
@@ -54,10 +57,10 @@ const ConverterAdditional = () => {
             <Card className='card'>
                 <div>
                     <FormControl sx={{ mb: 2, minWidth: 100 }}>
-                        <InputLabel id='demo-simple-select-label'>From</InputLabel>
+                        <InputLabel id='from-label'>From</InputLabel>
                         <Select
-                            labelId='demo-simple-select-label'
-                            id='demo-simple-select'
+                            labelId='from-label'
+                            id='from-select'
                             value={convertProduct.from}
                             name='from'
                             sx={{ width: 140 }}
@@ -86,10 +89,10 @@ const ConverterAdditional = () => {
 
                 <div>
                     <FormControl sx={{ mb: 2, minWidth: 100 }}>
-                        <InputLabel id='demo-simple-select-label'>To</InputLabel>
+                        <InputLabel id='to-label'>To</InputLabel>
                         <Select
-                            labelId='demo-simple-select-label'
-                            id='demo-simple-select'
+                            labelId='to-label'
+                            id='to-select'
                             value={convertProduct.to}
                             label='To'
                             sx={{ width: 140 }}
