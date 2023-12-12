@@ -61,8 +61,16 @@ const Converter = () => {
     }, [])
 
     function format(number) {
-        return number.toFixed(2);
+        const parsedNumber = parseFloat(number);
+
+        if (!isNaN(parsedNumber)) {
+            return parsedNumber.toFixed(2);
+        } else {
+            console.error("Invalid number:", number);
+            return "NaN";
+        }
     }
+
 
     return (
         <Box className='converter'>

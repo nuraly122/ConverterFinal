@@ -3,10 +3,8 @@ import Menu from "./Layout/Menu/Menu";
 import {Route, Routes} from "react-router-dom";
 import Converter from "./Pages/Converter/Converter";
 import React from "react";
-// import {inject, observer} from "mobx-react";
+import ConverterAdditional from "./Pages/ConverterAdditional/Converter.Additional";
 
-// inject('mainStore')
-// observer()
 
 const App = () => {
 
@@ -16,6 +14,7 @@ const App = () => {
                 <Route path='/' element={<Menu/>}>
                     <Route path="/valute" element={<Valute/>}/>
                     <Route path="/converter" element={<Converter/>}/>
+                    <Route path="/foodConverter" element={<ConverterAdditional/>}/>
                 </Route>
 
             </Routes>

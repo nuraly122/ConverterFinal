@@ -1,7 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {BASE_URL} from "../../Api";
+import React, {useEffect} from 'react';
 import "./Valute.css"
-import axios from "axios";
 import {Box} from "@mui/material";
 import ValuteCard from  "../../Components/ValuteCard/ValuteCard";
 import {observer} from "mobx-react";
