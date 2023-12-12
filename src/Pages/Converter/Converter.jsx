@@ -53,7 +53,7 @@ const Converter = () => {
 
     useEffect(() => {
         convert();
-    }, [convertData, result]);
+    }, [convertData, result, convert]);
 
     useEffect(() => {
         store.getRates();
